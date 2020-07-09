@@ -1,0 +1,39 @@
+<h2 class="mt-5"> <%= @post.title %> </h2>
+<p> <%= @post.body %> </p>
+<hr>
+<%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-success'%>
+<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'%>
+<hr>
+
+<% if @post.comments.length() != 0 %>
+    <% @post.comments.each do |comment| %>
+        <div class="card mt-1 mb-4">
+    <div class="card-body">
+      <p class="card-text">
+        <strong><%= comment.username %></strong>: <%= comment.body %><br><br>
+        <%= link_to 'Delete', [comment.post, comment], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+      </p>
+    </div>
+  </div>
+
+    <% end %>
+<% else %>
+    <h4>There are no comments.</h4>
+<% end %>
+
+<h3>Add Comment</h3>
+ <%= form_for([@post, @post.comments.build]) do |f|%>
+    <p>
+        <%= f.label :username %><br>
+        <%= f.text_field(:username, {:class => 'form-control'})%>
+    </p>
+
+    <p>
+        <%= f.label :body %><br>
+        <%= f.text_field(:body, {:class => 'form-control'})%>
+    </p>
+
+    <p>
+        <%= f.submit({:class => 'btn btn-primary'}) %>
+    </p>
+<% end %>

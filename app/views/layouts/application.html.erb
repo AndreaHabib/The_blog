@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Theblog</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light" style="background-color: #FFA500;">
+        <a class="navbar-brand" href="#"><strong><em>The</em> Blog</strong></a>
+        <button class="btn btn-primary"><%= link_to "Home", home_path %></button>
+        <button class="btn btn-success"><%= link_to "Create Post", new_post_path %></button>
+    </nav>
+    <div class="container-fluid">
+    <%= yield %>
+  </div>
+  </body>
+</html>
